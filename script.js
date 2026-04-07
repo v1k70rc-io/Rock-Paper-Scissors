@@ -1,16 +1,22 @@
 
 
-console.log(`Hello World`)
-
 function getComputerChoice() {
     let opcion = Math.random();
 
     if (opcion < 0.33) {
-        return 'Rock';
+        return 'piedra';
     } else if (opcion < 0.66) {
-        return 'Paper';
+        return 'papel';
     } else {
-        return 'Scissors';
+        return 'tijeras' ;
     }
 }
+
+function getHumanChoice() {
+    answer = prompt("piedra, papel o tijeras?")
+
+    return answer.toLoweCase();
+}
+
+
 
