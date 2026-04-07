@@ -41,13 +41,28 @@ function playRound(humanChoice, computerChoice) {
 
     console.log(`Puntos del humano: ${humanScore}`);
     console.log(`Puntos para la computadora ${computerScore}`);
+    
+    if(humanScore === computerScore) {
+        console.log("Es un empate");
+    } else if (humanScore > computerScore) {
+        console.log('El humano a ganado')
+    } else {
+        console.log('La computadora a ganado');
+    }
 
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+function playGame() {
+    for(let i = 0; i < 5; i++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    }
+}
+
+playGame();
 
 
 
