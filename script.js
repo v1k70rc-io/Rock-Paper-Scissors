@@ -22,32 +22,18 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
 
-    console.log(`Eleccion del humano: ${humanChoice}`);
-    console.log(`Eleccion de la computadora: ${computerChoice}`);
-
     if(
-        (humanChoice === 'piedra' && computerChoice === 'tijeras') ||
-        (humanChoice === 'papel' && computerChoice === 'piedra') ||
-        (humanChoice === 'tijeras' && computerChoice === 'papel') 
+        (humanChoice == 'piedra' && computerChoice == 'tijeras') ||
+        (humanChoice == 'papel' && computerChoice == 'piedra') ||
+        (humanChoice == 'tijeras' && computerChoice == 'papel')
     ) {
         humanScore++;
-        console.log('Punto para el humano');
+        console.log('Punto para el humano')
     } else if (humanChoice === computerChoice) {
-        console.log('Es un empate')
+        console.log('Empate');
     } else {
         computerScore++;
-        console.log('Punto para la computadora');
-    }
-
-    console.log(`Puntos del humano: ${humanScore}`);
-    console.log(`Puntos para la computadora ${computerScore}`);
-    
-    if(humanScore === computerScore) {
-        console.log("Es un empate");
-    } else if (humanScore > computerScore) {
-        console.log('El humano a ganado')
-    } else {
-        console.log('La computadora a ganado');
+        console.log('Punto para la computadora')
     }
 
 }
@@ -58,7 +44,13 @@ function playGame() {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
 
+        console.log(`La eleccion del humano es: ${humanSelection}`);
+        console.log(`La eleccion de la computadora es ${computerSelection}`);
+
         playRound(humanSelection, computerSelection);
+
+        console.log(`Puntos del humano: ${humanScore}`);
+        console.log(`Puntos de la computadora ${computerScore}`);
     }
 }
 
