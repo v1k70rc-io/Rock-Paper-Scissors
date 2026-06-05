@@ -1,60 +1,79 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
-    let opcion = Math.random();
+  let numerObtenido = Math.floor(Math.random() * 10);
 
-    if (opcion < 0.33) {
-        return 'piedra';
-    } else if (opcion < 0.66) {
-        return 'papel';
-    } else {
-        return 'tijeras' ;
-    }
+  if (numerObtenido >= 7) {
+    return "piedra";
+  } else if (numerObtenido >= 4) {
+    return "papel";
+  } else if (numerObtenido >= 1) {
+    return "tijeras";
+  }
 }
 
 function getHumanChoice() {
-    answer = prompt("piedra, papel o tijeras?")
-    answer = answer.toLowerCase();
+  let answer = prompt(
+    "Escibre una opción entre 'piedra', 'papel' o 'tijeras': ",
+  );
 
-    return answer;
+  return answer.toLowerCase();
 }
-
-function playRound(humanChoice, computerChoice) {
-
-    if(
-        (humanChoice == 'piedra' && computerChoice == 'tijeras') ||
-        (humanChoice == 'papel' && computerChoice == 'piedra') ||
-        (humanChoice == 'tijeras' && computerChoice == 'papel')
-    ) {
-        humanScore++;
-        console.log('Punto para el humano')
-    } else if (humanChoice === computerChoice) {
-        console.log('Empate');
-    } else {
-        computerScore++;
-        console.log('Punto para la computadora')
-    }
-
-}
-
 
 function playGame() {
-    for(let i = 0; i < 5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+  let humanScore = 0;
+  let computerScore = 0;
 
-        console.log(`La eleccion del humano es: ${humanSelection}`);
-        console.log(`La eleccion de la computadora es ${computerSelection}`);
-
-        playRound(humanSelection, computerSelection);
-
-        console.log(`Puntos del humano: ${humanScore}`);
-        console.log(`Puntos de la computadora ${computerScore}`);
+  function playRound(humanChoice, computerChoice) {
+    if (humanChoice === "piedra" && computerChoice === "tijeras") {
+      humanScore++;
+      console.log(
+        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
+      );
+      console.log(
+        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
+      );
+    } else if (humanChoice === "papel" && computerChoice === "piedra") {
+      humanScore++;
+      console.log(
+        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
+      );
+      console.log(
+        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
+      );
+    } else if (humanChoice === "tijeras" && computerChoice === "papel") {
+      humanScore++;
+      console.log(
+        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
+      );
+      console.log(
+        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
+      );
+    } else {
+      computerScore++;
+      console.log(
+        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es la computadora`,
+      );
+      console.log(
+        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
+      );
     }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+  }
+
+  console.log(`\nEl puntaje final es:`);
+  console.log(`Humano: ${humanScore} puntos`);
+  console.log(`Computadora: ${computerScore} puntos`);
+
+  if (humanScore > computerScore) {
+    console.log("\nEl humano a ganado!");
+  } else {
+    console.log("\nLa computadora a ganado!");
+  }
 }
 
 playGame();
-
-
-
