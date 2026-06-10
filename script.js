@@ -12,7 +12,7 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   let answer = prompt(
-    "Escibre una opción entre 'piedra', 'papel' o 'tijeras': ",
+    "Escribe una opción entre 'piedra', 'papel' o 'tijeras': ",
   );
 
   return answer.toLowerCase();
@@ -23,7 +23,11 @@ function playGame() {
   let computerScore = 0;
 
   function playRound(humanChoice, computerChoice) {
-    if (humanChoice === "piedra" && computerChoice === "tijeras") {
+    if (humanChoice === computerChoice) {
+      console.log(
+        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, es un empate`,
+      );
+    } else if (humanChoice === "piedra" && computerChoice === "tijeras") {
       humanScore++;
       console.log(
         `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
