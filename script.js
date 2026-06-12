@@ -1,5 +1,6 @@
 let puntuacionJugador = 0;
 let puntuacionComputadora = 0;
+let juegoTerminado = false;
 
 const marcadorJugador = document.querySelector(".puntuacion-humano");
 const marcadorComputadora = document.querySelector(".puntuacion-computadora");
@@ -25,7 +26,7 @@ const jugarRonda = (eleccionJugador, eleccionComputadora) => {
   if (eleccionJugador === eleccionComputadora) {
     return {
       ganador: "empate",
-      mensaje: `la ronda ha sido un empate, el jugador escogio ${eleccionJugador} y la computadora escogio ${eleccionComputadora}`,
+      mensaje: `La ronda ha sido un empate. El jugador escogio ${eleccionJugador} y la computadora escogio ${eleccionComputadora}`,
     };
   } else if (
     (eleccionJugador === "piedra" && eleccionComputadora === "tijeras") ||
@@ -44,8 +45,58 @@ const jugarRonda = (eleccionJugador, eleccionComputadora) => {
   }
 };
 
-botonesEleccion.forEach((botonSelecciondo) => {
-  botonSelecciondo.addEventListener("click", () => {});
-});
+const actualizarPuntuacion = (resultado) => {
+  if (resultado.ganador === "jugador") {
+    puntuacionJugador++;
+  } else if (resultado.ganador === "computadora") {
+    puntuacionComputadora++;
+  }
+};
 
-let render = () => {};
+const render = (resultado) => {
+  marcadorJugador.textContent = puntuacionJugador;
+  marcadorComputadora.textContent = puntuacionComputadora;
+  resultadoRonda.textContent = resultado.mensaje;
+};
+
+const comprobarFinJuego = () => {
+  if (puntuacionJugador === 5) {
+    return "jugador";
+  } else if (puntuacionComputadora === 5) {
+    return "computadora";
+  }
+
+  return null;
+};
+
+const mostrarGanadorFinal = (resultadoFinJuego) => {
+  if (resultadoFinJuego !== null) {
+    resultadoFinal.textContent = `El ganador del juego es ${resultadoFinJuego}`;
+
+    juegoTerminado = true;
+
+    botonesEleccion.forEach((botonActual) => {
+      botonActual.disabled = true;
+    });
+  }
+};
+
+const manejarEleccion = (evento) => {
+  if (juegoTerminado) {
+    return;
+  }
+
+  const eleccionJugador = evento.currentTarget.dataset.eleccion;
+  const eleccionComputadora = obtenerEleccionComputadora();
+  const resultado = jugarRonda(eleccionJugador, eleccionComputadora);
+
+  actualizarPuntuacion(resultado);
+  render(resultado);
+
+  const resultadoFinJuego = comprobarFinJuego();
+  mostrarGanadorFinal(resultadoFinJuego);
+};
+
+botonesEleccion.forEach((botonSelecciondo) => {
+  botonSelecciondo.addEventListener("click", manejarEleccion);
+});
