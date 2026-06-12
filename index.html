@@ -1,13 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
 
+    <link rel="stylesheet" href="style.css" />
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <h1>Rock Paper Scissors</h1>
+    <main>
+      <h1>Piedra Papel Tijeras</h1>
+
+      <section aria-labelledby="elecciones-heading">
+        <h2 id="elecciones-heading">Elige una opción:</h2>
+
+        <div class="elecciones">
+          <button class="btn" type="button" data-eleccion="piedra">
+            Piedra
+          </button>
+
+          <button class="btn" type="button" data-eleccion="papel">Papel</button>
+
+          <button class="btn" type="button" data-eleccion="tijeras">
+            Tijeras
+          </button>
+        </div>
+      </section>
+
+      <section aria-labelledby="puntuaciones-heading">
+        <h2 id="puntuaciones-heading">Marcador</h2>
+
+        <p>
+          Jugador:
+          <span class="puntuacion-humano">0</span>
+        </p>
+
+        <p>
+          Computadora:
+          <span class="puntuacion-computadora">0</span>
+        </p>
+      </section>
+
+      <section aria-labelledby="resultados-heading">
+        <h2 id="resultados-heading">Resultado</h2>
+
+        <p class="resultado-ronda" role="status">
+          Elige piedra, papel o tijeras para comenzar.
+        </p>
+
+        <p class="resultado-juego" role="status"></p>
+      </section>
+    </main>
   </body>
 </html>

@@ -1,83 +1,51 @@
-function getComputerChoice() {
-  let numerObtenido = Math.floor(Math.random() * 10);
+let puntuacionJugador = 0;
+let puntuacionComputadora = 0;
 
-  if (numerObtenido >= 7) {
+const marcadorJugador = document.querySelector(".puntuacion-humano");
+const marcadorComputadora = document.querySelector(".puntuacion-computadora");
+
+const resultadoRonda = document.querySelector(".resultado-ronda");
+const resultadoFinal = document.querySelector(".resultado-juego");
+
+const botonesEleccion = document.querySelectorAll("[data-eleccion]");
+
+const obtenerEleccionComputadora = () => {
+  const eleccionComputadora = Math.floor(Math.random() * 3);
+
+  if (eleccionComputadora === 0) {
     return "piedra";
-  } else if (numerObtenido >= 4) {
+  } else if (eleccionComputadora === 1) {
     return "papel";
-  } else if (numerObtenido >= 1) {
+  } else {
     return "tijeras";
   }
-}
+};
 
-function getHumanChoice() {
-  let answer = prompt(
-    "Escribe una opción entre 'piedra', 'papel' o 'tijeras': ",
-  );
-
-  return answer.toLowerCase();
-}
-
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-
-  function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-      console.log(
-        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, es un empate`,
-      );
-    } else if (humanChoice === "piedra" && computerChoice === "tijeras") {
-      humanScore++;
-      console.log(
-        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
-      );
-      console.log(
-        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
-      );
-    } else if (humanChoice === "papel" && computerChoice === "piedra") {
-      humanScore++;
-      console.log(
-        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
-      );
-      console.log(
-        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
-      );
-    } else if (humanChoice === "tijeras" && computerChoice === "papel") {
-      humanScore++;
-      console.log(
-        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es el humano`,
-      );
-      console.log(
-        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
-      );
-    } else {
-      computerScore++;
-      console.log(
-        `El humano a escojido ${humanChoice} y la computadora ${computerChoice}, el ganador es la computadora`,
-      );
-      console.log(
-        `El puntaje es: humano: ${humanScore} puntos y computadora: ${computerScore} puntos`,
-      );
-    }
-  }
-
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-  }
-
-  console.log(`\nEl puntaje final es:`);
-  console.log(`Humano: ${humanScore} puntos`);
-  console.log(`Computadora: ${computerScore} puntos`);
-
-  if (humanScore > computerScore) {
-    console.log("\nEl humano a ganado!");
+const jugarRonda = (eleccionJugador, eleccionComputadora) => {
+  if (eleccionJugador === eleccionComputadora) {
+    return {
+      ganador: "empate",
+      mensaje: `la ronda ha sido un empate, el jugador escogio ${eleccionJugador} y la computadora escogio ${eleccionComputadora}`,
+    };
+  } else if (
+    (eleccionJugador === "piedra" && eleccionComputadora === "tijeras") ||
+    (eleccionJugador === "papel" && eleccionComputadora === "piedra") ||
+    (eleccionJugador === "tijeras" && eleccionComputadora === "papel")
+  ) {
+    return {
+      ganador: "jugador",
+      mensaje: `Ha ganado el jugador. ${eleccionJugador} vence a ${eleccionComputadora}`,
+    };
   } else {
-    console.log("\nLa computadora a ganado!");
+    return {
+      ganador: "computadora",
+      mensaje: `Ha ganado la computadora. ${eleccionComputadora} vence a ${eleccionJugador}!`,
+    };
   }
-}
+};
 
-playGame();
+botonesEleccion.forEach((botonSelecciondo) => {
+  botonSelecciondo.addEventListener("click", () => {});
+});
+
+let render = () => {};
